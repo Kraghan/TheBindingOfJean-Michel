@@ -21,6 +21,10 @@
 , m_isMovingRight(false)
 , m_isMovingUp(false)
 , m_isMovingDown(false)
+, m_blockMovingLeft(false)
+, m_blockMovingRight(false)
+, m_blockMovingUp(false)
+, m_blockMovingDown(false)
 , m_active(false)
 {
     // None
@@ -203,7 +207,6 @@ void PhysicObjects::update(double dt)
     {
         newVelocity.x -= (m_velocity.x*coeffFriction)*dt;
     }
-
     if(!m_isMovingUp && m_velocity.y < 0)
     {
         newVelocity.y -= (m_velocity.y*coeffFriction)*dt;
@@ -219,15 +222,18 @@ void PhysicObjects::update(double dt)
         newVelocity.y = 0.0;
 
     // Update acceleration
-    if(m_isMovingDown)
-        newVelocity.y += m_acceleration*dt;
-    else if(m_isMovingUp)
-        newVelocity.y -= m_acceleration*dt;
-    if(m_isMovingLeft)
-        newVelocity.x -= m_acceleration*dt;
-    else if(m_isMovingRight)
-        newVelocity.x += m_acceleration*dt;
-
+    if(m_isMovingDown && !m_blockMovingDown) {
+        newVelocity.y += m_acceleration * dt;
+    }
+    else if(m_isMovingUp && !m_blockMovingUp) {
+        newVelocity.y -= m_acceleration * dt;
+    }
+    if(m_isMovingLeft && !m_blockMovingLeft) {
+        newVelocity.x -= m_acceleration * dt;
+    }
+    else if(m_isMovingRight && !m_blockMovingRight) {
+        newVelocity.x += m_acceleration * dt;
+    }
     if(fabsf(newVelocity.x) <= m_maxSpeed)
         m_velocity.x = newVelocity.x;
     else
@@ -284,8 +290,6 @@ sf::Vector2f PhysicObjects::isColliding(PhysicObjects *object)
     if(d2y > d1x && d2y > d2x && d2y > d1y)
         deep.y = d2y;
     return deep;
-
-
 }
 
 
@@ -302,4 +306,34 @@ void PhysicObjects::setInactive()
 bool PhysicObjects::isActive()
 {
     return m_active;
+}
+
+void PhysicObjects::blockMovingLeft(bool value)
+{
+    m_blockMovingLeft = value;
+}
+
+void PhysicObjects::blockMovingRight(bool value)
+{
+    m_blockMovingRight = value;
+}
+
+void PhysicObjects::blockMovingDown(bool value)
+{
+    m_blockMovingDown = value;
+}
+
+void PhysicObjects::blockMovingUp(bool value)
+{
+    m_blockMovingUp = value;
+}
+
+void PhysicObjects::killVerticalKinetic()
+{
+    m_velocity.y = 0.0f;
+}
+
+void PhysicObjects::killHorizontalKinetic()
+{
+    m_velocity.x = 0.0f;
 }

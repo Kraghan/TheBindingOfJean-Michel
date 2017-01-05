@@ -70,33 +70,43 @@ void PhysicEngine::processCollision(PhysicObjects* object)
             continue;
 
         sf::Vector2f vector = object->isColliding(&m_aphysicObjects[i]);
+
+        object->blockMovingUp(false);
+        object->blockMovingDown(false);
+        object->blockMovingLeft(false);
+        object->blockMovingRight(false);
+
         if(vector != sf::Vector2f(0.0f,0.0f))
         {
             if(m_aphysicObjects[i].getPosition().y < object->getPosition().y
                && vector.y != 0.0f && object->m_velocity.y < 0.0f)
             {
-                object->stopMoveUp();
+                object->blockMovingUp(true);
+                object->killVerticalKinetic();
                 object->move(0.0f,-vector.y);
             }
 
             if(m_aphysicObjects[i].getPosition().y > object->getPosition().y
                && vector.y != 0.0f && object->m_velocity.y > 0.0f)
             {
-                object->stopMoveDown();
+                object->blockMovingDown(true);
+                object->killVerticalKinetic();
                 object->move(0.0f,vector.y);
             }
 
             if(m_aphysicObjects[i].getPosition().x < object->getPosition().x
                && vector.x != 0.0f && object->m_velocity.x < 0.0f)
             {
-                object->stopMoveLeft();
+                object->blockMovingLeft(true);
+                object->killHorizontalKinetic();
                 object->move(-vector.x,0.0f);
             }
 
             if(m_aphysicObjects[i].getPosition().x > object->getPosition().x
                && vector.x != 0.0f && object->m_velocity.x > 0.0f)
             {
-                object->stopMoveRight();
+                object->blockMovingRight(true);
+                object->killHorizontalKinetic();
                 object->move(vector.x,0.0f);
             }
         }

@@ -58,7 +58,7 @@ void Player::init()
 {
     Entity::init(10,sf::Vector2f(GraphicEngine::Instance()->getResolution().x/2,
                                  GraphicEngine::Instance()->getResolution().y/2),
-                 sf::Vector2f(160,160),500.0f,500.0f);
+                 sf::Vector2f(160,160),500.0f,1000.0f);
     activePhysic();
 }
 
