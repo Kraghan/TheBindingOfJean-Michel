@@ -61,7 +61,7 @@ private:
 
     const std::string   texturePath                 = "../res/Texture/";
 
-    static const unsigned int  elements             = 10;
+    static const unsigned int  elements             = 11;
 
     const std::string   fileName[elements]          =
     {
@@ -74,7 +74,8 @@ private:
             texturePath+"Wall_R.png",
             texturePath+"Wall_L.png",
             texturePath+"Jean-Michel_spritesheet.png",
-            texturePath+"obstacle.png"
+            texturePath+"obstacle.png",
+            texturePath+"Door.png"
     };
     const std::string   names[elements]             =
     {
@@ -87,7 +88,8 @@ private:
             "WALL_RIGHT",
             "WALL_LEFT",
             "PLAYER",
-            "OBSTACLE"
+            "OBSTACLE",
+            "DOOR"
     };
 
     unsigned            m_indexResolution;

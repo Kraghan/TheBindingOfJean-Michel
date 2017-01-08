@@ -1,27 +1,22 @@
 //
-// Created by Kraghan on 21/12/2016.
+// Created by Kraghan on 05/01/2017.
 //
 
-#ifndef BINDINGOFJEANMICHEL_LEVEL_HPP
-#define BINDINGOFJEANMICHEL_LEVEL_HPP
+#ifndef BINDINGOFJEANMICHEL_LEVELGENERATOR_HPP
+#define BINDINGOFJEANMICHEL_LEVELGENERATOR_HPP
 
 
-#include <vector>
-#include "../Room/Room.hpp"
-#include "../../Header/Room/RoomStorage.hpp"
-#include "../../Header/GraphicEngine/GraphicEngine.hpp"
+#include "Level.hpp"
 
-class Level
+class LevelGenerator
 {
     //------------------------------------------------------------------------------------------------------------------
     /// Public members
     //------------------------------------------------------------------------------------------------------------------
 public:
-    explicit            Level              ();
-    virtual             ~Level             ();
-    Room*               getFirstRoom       ();
-    void                addRoom            (Room room);
-
+    explicit            LevelGenerator              ();
+    virtual             ~LevelGenerator             ();
+    Level               generateLevel               (unsigned seed);
     //------------------------------------------------------------------------------------------------------------------
     /// Protected members
     //------------------------------------------------------------------------------------------------------------------
@@ -31,8 +26,7 @@ protected:
     /// Private members
     //------------------------------------------------------------------------------------------------------------------
 private:
-    std::vector<Room> m_aprooms;
 };
 
 
-#endif //BINDINGOFJEANMICHEL_LEVEL_HPP
+#endif //BINDINGOFJEANMICHEL_LEVELGENERATOR_HPP

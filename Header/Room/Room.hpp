@@ -21,6 +21,7 @@ public:
     virtual             ~Room             ();
     void                display           ();
     void                hide              ();
+    void                load              ();
     unsigned            getWidth          ();
     unsigned            getHeight         ();
     void                addSprite         (Sprite* sprite);
