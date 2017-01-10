@@ -9,7 +9,7 @@
 #include <SFML/System.hpp>
 #include "../GraphicEngine/Sprite.hpp"
 #include "../PhysicEngine/PhysicObjects.hpp"
-#include "NeighbourPosition.hpp"
+#include "../Tools/Position.hpp"
 
 class Room
 {
@@ -28,7 +28,7 @@ public:
     void                addSprite         (Sprite* sprite);
     void                addPhysicObjects  (PhysicObjects* object);
     void                addObstacle       (sf::Vector2f position);
-    bool                addNeighbour      (NeighBourPosition pos,Room* room);
+    bool                addNeighbour      (Position pos,Room* room);
 
     static const unsigned standardWidth = 10;
     static const unsigned standardHeight = 6;

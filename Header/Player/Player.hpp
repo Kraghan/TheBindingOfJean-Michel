@@ -10,6 +10,7 @@
 #include "../Entity/AnimatedEntity.hpp"
 #include "../../Header/GraphicEngine/GraphicEngine.hpp"
 #include <iostream>
+#include "../../Header/Tools/Position.hpp"
 
 class Player : public AnimatedEntity, public Updatable
 {
@@ -22,6 +23,8 @@ public:
     virtual void        update              (double dt);
     void                init                ();
     void                startAnimation      (std::string name);
+    void                shoot               (Position position);
+    void                setHeadOrientation  (Position position);
 
     //------------------------------------------------------------------------------------------------------------------
     /// Protected members
@@ -32,6 +35,8 @@ protected:
     /// Private members
     //------------------------------------------------------------------------------------------------------------------
 private:
+    Sprite*             m_headSprite;
+    Animation           m_headAnimation;
 };
 
 

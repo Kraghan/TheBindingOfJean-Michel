@@ -189,29 +189,29 @@ void Room::load()
 
 }
 
-bool Room::addNeighbour(NeighBourPosition pos, Room *room)
+bool Room::addNeighbour(Position pos, Room *room)
 {
     switch (pos)
     {
-        case NeighBourPosition::E_BOTTOM :
+        case Position::E_BOTTOM :
             if(m_bottomRoom == nullptr)
                 m_bottomRoom = room;
             else
                 return false;
             break;
-        case NeighBourPosition::E_LEFT :
+        case Position::E_LEFT :
             if(m_leftRoom == nullptr)
                 m_leftRoom = room;
             else
                 return false;
             break;
-        case NeighBourPosition::E_RIGHT :
+        case Position::E_RIGHT :
             if(m_rightRoom == nullptr)
                 m_rightRoom = room;
             else
                 return false;
             break;
-        case NeighBourPosition::E_TOP :
+        case Position::E_TOP :
             if(m_topRoom == nullptr)
                 m_topRoom = room;
             else

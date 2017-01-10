@@ -77,6 +77,22 @@
                     m_player.startAnimation("WALK_FRONT");
                 }
                 break;
+            case sf::Keyboard::Up :
+                m_player.setHeadOrientation(Position::E_TOP);
+                m_player.shoot(Position::E_TOP);
+                break;
+            case sf::Keyboard::Down :
+                m_player.setHeadOrientation(Position::E_BOTTOM);
+                m_player.shoot(Position::E_BOTTOM);
+                break;
+            case sf::Keyboard::Left :
+                m_player.setHeadOrientation(Position::E_LEFT);
+                m_player.shoot(Position::E_LEFT);
+                break;
+            case sf::Keyboard::Right :
+                m_player.setHeadOrientation(Position::E_RIGHT);
+                m_player.shoot(Position::E_RIGHT);
+                break;
             default:
                 break;
         }

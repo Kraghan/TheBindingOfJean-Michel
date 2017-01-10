@@ -1,0 +1,14 @@
+//
+// Created by madjo on 09/01/2017.
+//
+
+#ifndef BINDINGOFJEANMICHEL_POSITION_HPP
+#define BINDINGOFJEANMICHEL_POSITION_HPP
+enum Position
+{
+    E_TOP,
+    E_BOTTOM,
+    E_LEFT,
+    E_RIGHT
+};
+#endif //BINDINGOFJEANMICHEL_POSITION_HPP
