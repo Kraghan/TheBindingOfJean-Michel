@@ -21,6 +21,7 @@ public:
     virtual             ~Player             ();
     virtual void        update              (double dt);
     void                init                ();
+    void                startAnimation      (std::string name);
 
     //------------------------------------------------------------------------------------------------------------------
     /// Protected members
@@ -31,7 +32,6 @@ protected:
     /// Private members
     //------------------------------------------------------------------------------------------------------------------
 private:
-
 };
 
 

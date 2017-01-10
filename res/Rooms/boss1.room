@@ -1,5 +1,6 @@
 [SETTINGS]
-LEVEL_BOSS = 0
+LEVEL_BOSS = 1
+BOSS = "THE_BOSS"
 
 [DIMENSION]
 # 1 for a full window room, 2 for a 2*full window room...
@@ -9,15 +10,3 @@ ROOM_HEIGHT = 1
 [OBSTACLE]
 # Max X : 15
 # Max Y : 7
-0 0
-1 0
-0 1
-15 0
-14 0
-15 1
-0 7
-1 7
-0 6
-15 7
-14 7
-15 6

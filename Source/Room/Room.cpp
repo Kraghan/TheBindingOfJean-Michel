@@ -17,9 +17,8 @@
 
 }
 
-Room::Room(unsigned width, unsigned height, bool isBossRoom)
+Room::Room(unsigned width, unsigned height)
 {
-    m_isBossRoom = isBossRoom;
     m_dimension = sf::Vector2u(width,height);
 }
 
@@ -188,4 +187,38 @@ void Room::load()
                                       (sf::Vector2f(160.0f,960.0f)));
     addPhysicObjects(wallRight);
 
+}
+
+bool Room::addNeighbour(NeighBourPosition pos, Room *room)
+{
+    switch (pos)
+    {
+        case NeighBourPosition::E_BOTTOM :
+            if(m_bottomRoom == nullptr)
+                m_bottomRoom = room;
+            else
+                return false;
+            break;
+        case NeighBourPosition::E_LEFT :
+            if(m_leftRoom == nullptr)
+                m_leftRoom = room;
+            else
+                return false;
+            break;
+        case NeighBourPosition::E_RIGHT :
+            if(m_rightRoom == nullptr)
+                m_rightRoom = room;
+            else
+                return false;
+            break;
+        case NeighBourPosition::E_TOP :
+            if(m_topRoom == nullptr)
+                m_topRoom = room;
+            else
+                return false;
+            break;
+        default:
+            return false;
+    }
+    return true;
 }

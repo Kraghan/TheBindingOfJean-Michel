@@ -33,10 +33,11 @@ protected:
 private:
     const std::string   dirPath = "../res/Rooms/";
 
-    static const unsigned elements = 1;
+    static const unsigned elements = 2;
 
     const std::string   roomFiles [elements] =
     {
+            "0.room",
             "1.room"
     };
 };

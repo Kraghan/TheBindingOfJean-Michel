@@ -16,7 +16,7 @@
             std::vector<sf::Vector2f> obstacle;
 
             std::string line;
-            bool isBossRoom = false;
+            unsigned levelBoss = 0;
             unsigned width = 0,height = 0;
 
             while (std::getline(infile, line)) {
@@ -52,13 +52,8 @@
                     unsigned value;
                     iss >> name >> symbole >> value;
 
-                    if (name == "IS_BOSS_ROOM") {
-                        if (value > 1)
-                            value = 1;
-
-                        isBossRoom = false;
-                        if(value == 1)
-                            isBossRoom = true;
+                    if (name == "LEVEL_BOSS") {
+                        levelBoss = value;
                     }
                 }
 
@@ -102,7 +97,7 @@
                 std::cerr<< "Error : Width not set for file : "<< roomFiles[i] <<std::endl;
             if(height != 0 && width != 0)
             {
-                Room* room = RoomStorage::Instance()->addRoom(width,height,isBossRoom);
+                Room* room = RoomStorage::Instance()->addRoom(width,height,levelBoss);
 
                 for(auto vector : obstacle)
                 {

@@ -9,6 +9,7 @@
 #include <SFML/System.hpp>
 #include "../GraphicEngine/Sprite.hpp"
 #include "../PhysicEngine/PhysicObjects.hpp"
+#include "NeighbourPosition.hpp"
 
 class Room
 {
@@ -17,7 +18,7 @@ class Room
     //------------------------------------------------------------------------------------------------------------------
 public:
     explicit            Room              ();
-    explicit            Room              (unsigned width, unsigned height, bool isBossRoom);
+    explicit            Room              (unsigned width, unsigned height);
     virtual             ~Room             ();
     void                display           ();
     void                hide              ();
@@ -27,6 +28,7 @@ public:
     void                addSprite         (Sprite* sprite);
     void                addPhysicObjects  (PhysicObjects* object);
     void                addObstacle       (sf::Vector2f position);
+    bool                addNeighbour      (NeighBourPosition pos,Room* room);
 
     static const unsigned standardWidth = 10;
     static const unsigned standardHeight = 6;
@@ -35,13 +37,13 @@ public:
     /// Protected members
     //------------------------------------------------------------------------------------------------------------------
 protected:
+    Room              *m_leftRoom,*m_rightRoom,*m_topRoom,*m_bottomRoom;
 
     //------------------------------------------------------------------------------------------------------------------
     /// Private members
     //------------------------------------------------------------------------------------------------------------------
 private:
     sf::Vector2u                m_dimension;
-    bool                        m_isBossRoom;
     std::vector<Sprite*>        m_apsprites;
     std::vector<PhysicObjects*> m_apphysicObjects;
 };
