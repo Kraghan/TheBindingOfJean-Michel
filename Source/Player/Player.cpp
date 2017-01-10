@@ -49,65 +49,67 @@
     m_animation.setState("IDLE_FRONT");
     m_animation.setState("FRONT");
 
+    float animationSpeed = 0.1f;
+
     m_animation.getState("IDLE_FRONT")->init(
             m_sprite, true,
             sf::Vector2i(0, 0), sf::Vector2i(80, 80),
-            80, 1, 0.08);
+            80, 1, animationSpeed);
 
     m_animation.getState("IDLE_LEFT")->init(
             m_sprite, true,
             sf::Vector2i(0, 160), sf::Vector2i(80, 80),
-            80, 1, 0.08);
+            80, 1, animationSpeed);
 
     m_animation.getState("IDLE_RIGHT")->init(
             m_sprite, true,
             sf::Vector2i(0, 240), sf::Vector2i(80, 80),
-            80, 1, 0.08);
+            80, 1, animationSpeed);
 
     m_animation.getState("IDLE_BACK")->init(
             m_sprite, true,
             sf::Vector2i(0, 80), sf::Vector2i(80, 80),
-            80, 1, 0.08);
+            80, 1, animationSpeed);
 
     m_animation.getState("WALK_LEFT")->init(
             m_sprite, true,
             sf::Vector2i(80, 160), sf::Vector2i(80, 80),
-            80, 2, 0.08);
+            80, 2, animationSpeed);
 
     m_animation.getState("WALK_RIGHT")->init(
             m_sprite, true,
             sf::Vector2i(80, 240), sf::Vector2i(80, 80),
-            80, 2, 0.08);
+            80, 2, animationSpeed);
 
     m_animation.getState("WALK_FRONT")->init(
             m_sprite, true,
             sf::Vector2i(80, 0), sf::Vector2i(80, 80),
-            80, 2, 0.08);
+            80, 2, animationSpeed);
 
     m_animation.getState("WALK_BACK")->init(
             m_sprite, true,
             sf::Vector2i(80, 80), sf::Vector2i(80, 80),
-            80, 2, 0.08);
+            80, 2, animationSpeed);
 
     m_headAnimation.getState("FRONT")->init(
             m_headSprite, true,
             sf::Vector2i(0, 0), sf::Vector2i(80, 80),
-            80, 1, 0.08);
+            80, 1, animationSpeed);
 
     m_headAnimation.getState("BACK")->init(
             m_headSprite, true,
-            sf::Vector2i(0, 0), sf::Vector2i(80, 80),
-            80, 1, 0.08);
+            sf::Vector2i(0, 80), sf::Vector2i(80, 80),
+            80, 1, animationSpeed);
 
     m_headAnimation.getState("RIGHT")->init(
             m_headSprite, true,
-            sf::Vector2i(0, 0), sf::Vector2i(80, 80),
-            80, 1, 0.08);
+            sf::Vector2i(0, 240), sf::Vector2i(80, 80),
+            80, 1, animationSpeed);
 
     m_headAnimation.getState("LEFT")->init(
             m_headSprite, true,
-            sf::Vector2i(0, 0), sf::Vector2i(80, 80),
-            80, 1, 0.08);
+            sf::Vector2i(0, 160), sf::Vector2i(80, 80),
+            80, 1, animationSpeed);
     // Set initial state
     m_animation.setState("IDLE");
     m_animation.start();
