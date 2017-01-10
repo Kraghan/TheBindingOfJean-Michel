@@ -11,6 +11,7 @@
 #include "../../Header/GraphicEngine/GraphicEngine.hpp"
 #include <iostream>
 #include "../../Header/Tools/Position.hpp"
+#include "../Entity/Projectile.hpp"
 
 class Player : public AnimatedEntity, public Updatable
 {
@@ -35,8 +36,11 @@ protected:
     /// Private members
     //------------------------------------------------------------------------------------------------------------------
 private:
-    Sprite*             m_headSprite;
-    Animation           m_headAnimation;
+    Sprite*                     m_headSprite;
+    Animation                   m_headAnimation;
+    std::vector<Projectile>     m_projectiles;
+    float                       m_timeSinceLastShoot;
+    float                       m_timeBetweenShoot;
 };
 
 

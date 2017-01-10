@@ -61,6 +61,14 @@ public:
 
     sf::Vector2f        isColliding                 (PhysicObjects* object);
 
+    inline void         impulse                     (float x, float y)
+    {
+        if(!m_isRigidBody)
+            return;
+        m_velocity.x += x;
+        m_velocity.y += y;
+    }
+
     //------------------------------------------------------------------------------------------------------------------
     /// Protected members
     //------------------------------------------------------------------------------------------------------------------
@@ -81,6 +89,8 @@ protected:
 
     inline void         move                        (float x, float y)
     {
+        if(!m_isRigidBody)
+            return;
         m_position.x += x;
         m_position.y += y;
     }
