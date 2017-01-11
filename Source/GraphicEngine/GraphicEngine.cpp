@@ -113,14 +113,20 @@ void GraphicEngine::constructLayers(double factor)
     // Iterating the list
     for(unsigned index = 0; index < _spritesCount; ++index)
     {
-        if(m_layers.find((int)_sprites->getPosition().y+_sprites->getTextureRect().height) == m_layers.end())
+        if(!_sprites[index].isVisible()) continue;
+        if(m_layers.find((int)_sprites[index].getPosition().y
+                         + _sprites[index].getTextureRect().height)
+           == m_layers.end())
         {
             std::vector<const Sprite*> toAdd;
             toAdd.push_back(&_sprites[index]);
-            m_layers.emplace((int)_sprites->getPosition().y+_sprites->getTextureRect().height,toAdd);
+            m_layers.emplace((int)_sprites[index].getPosition().y
+                             + _sprites[index].getTextureRect().height,toAdd);
         }
         else
-            m_layers.at((int)_sprites->getPosition().y+_sprites->getTextureRect().height).push_back(&_sprites[index]);
+            m_layers.at((int)_sprites[index].getPosition().y
+                        + _sprites[index].getTextureRect().height).push_back
+                    (&_sprites[index]);
     }
     for(auto layer : m_layers)
     {

@@ -8,6 +8,8 @@
 : AnimatedEntity()
 , m_headSprite(nullptr)
 , m_headAnimation()
+, m_timeSinceLastShoot(0.0)
+, m_timeBetweenShoot(0.5)
 {
     // Initialize graphic
     m_sprite = GraphicEngine::Instance()->getSprite();
@@ -115,6 +117,15 @@
     m_animation.start();
     m_headAnimation.setState("IDLE");
     m_headAnimation.start();
+
+    // Allocate projectile
+    for(unsigned i = 0; i < NB_PROJECTILES; ++i)
+    {
+        m_projectiles.push_back(Projectile());
+        sf::Texture* texture = GraphicEngine::Instance()->getTextures
+                ("PLAYER_SHOOT");
+        m_projectiles[m_projectiles.size()-1].setTexture(texture);
+    }
 }
 
 /* Virtual */ Player::~Player()
@@ -128,6 +139,16 @@ void Player::update(double dt)
     m_sprite->setPosition(getPhysicObject()->getPosition());
     m_headAnimation.update(dt);
     m_headSprite->setPosition(getPhysicObject()->getPosition());
+    for(unsigned i = 0; i < m_projectiles.size(); ++i )
+    {
+        if(!m_projectiles[i].isFree())
+        {
+            m_projectiles[i].update(dt);
+            if (m_projectiles[i].isDead())
+                m_projectiles[i].free();
+        }
+    }
+    m_timeSinceLastShoot += dt;
 }
 
 void Player::init()
@@ -150,7 +171,46 @@ void Player::startAnimation(std::string name)
 
 void Player::shoot(Position position)
 {
+    if(m_timeSinceLastShoot < m_timeBetweenShoot)
+        return;
 
+    Projectile* projectile = nullptr;
+    for(unsigned i = 0; i < NB_PROJECTILES; ++i)
+    {
+        if(m_projectiles[i].isFree())
+        {
+            projectile = &m_projectiles[i];
+            break;
+        }
+    }
+
+    if(projectile == nullptr)
+        return;
+
+    sf::Vector2f speed;
+    float speedValue = 600.0f;
+
+    switch (position)
+    {
+        case Position::E_TOP :
+            speed = sf::Vector2f(0.0f,-speedValue);
+            break;
+        case Position::E_BOTTOM :
+            speed = sf::Vector2f(0.0f,speedValue);
+            break;
+        case Position::E_LEFT :
+            speed = sf::Vector2f(-speedValue,0.0f);
+            break;
+        case Position::E_RIGHT :
+            speed = sf::Vector2f(speedValue,0.0f);
+            break;
+        default:
+            return;
+    }
+
+    projectile->init(2,1,getPhysicObject()->getPosition(),sf::Vector2f(40,40)
+            ,speed);
+    m_timeSinceLastShoot = 0.0;
 }
 
 void Player::setHeadOrientation(Position position)

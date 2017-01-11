@@ -39,8 +39,9 @@ private:
     Sprite*                     m_headSprite;
     Animation                   m_headAnimation;
     std::vector<Projectile>     m_projectiles;
-    float                       m_timeSinceLastShoot;
-    float                       m_timeBetweenShoot;
+    double                      m_timeSinceLastShoot;
+    double                      m_timeBetweenShoot;
+    const unsigned              NB_PROJECTILES = 25;
 };
 
 

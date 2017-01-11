@@ -24,7 +24,6 @@
     m_level = generator.generateLevel(1);
     m_activeRoom = m_level.getFirstRoom();
     m_activeRoom->display();
-    m_player = Player();
     m_player.init();
     return true;
 }

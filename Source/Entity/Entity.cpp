@@ -2,7 +2,6 @@
 // Created by Kraghan on 22/12/2016.
 //
 
-#include <iostream>
 #include "../../Header/Entity/Entity.hpp"
 #include "../../Header/PhysicEngine/PhysicEngine.hpp"
 

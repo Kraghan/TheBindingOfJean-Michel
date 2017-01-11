@@ -7,6 +7,8 @@
 
 
 #include "Entity.hpp"
+#include "../GraphicEngine/GraphicEngine.hpp"
+#include "../PhysicEngine/PhysicEngine.hpp"
 
 class Projectile : public Entity, public Updatable
 {
@@ -21,6 +23,11 @@ public:
     void                init                    (double timeToLive, unsigned damage, sf::Vector2f position,
                                                  sf::Vector2f dimension, sf::Vector2f speed);
     virtual void        update                  (double dt);
+    void                free                    ();
+
+    bool                isFree                  ();
+    void                setTexture              (sf::Texture* texture);
+    void                kill                    ();
 
     //------------------------------------------------------------------------------------------------------------------
     /// Protected members
@@ -34,7 +41,7 @@ private:
     double              m_timeToLive;
     unsigned            m_damage;
     double              m_elapsed;
-
+    bool                m_isFree;
 };
 
 
