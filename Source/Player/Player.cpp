@@ -9,7 +9,7 @@
 , m_headSprite(nullptr)
 , m_headAnimation()
 , m_timeSinceLastShoot(0.0)
-, m_timeBetweenShoot(0.5)
+, m_timeBetweenShoot(0.1)
 {
     // Initialize graphic
     m_sprite = GraphicEngine::Instance()->getSprite();

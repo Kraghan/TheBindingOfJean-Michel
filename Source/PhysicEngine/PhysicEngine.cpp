@@ -32,7 +32,7 @@ void PhysicEngine::update(double dt)
         {
             object->update(dt);
 
-            if(object->isCollider())
+            if(object->isCollider() || object->isTrigger())
             {
                 processCollision(object);
             }
@@ -62,6 +62,8 @@ PhysicObjects *PhysicEngine::getPhysicObject()
 
 void PhysicEngine::processCollision(PhysicObjects* object)
 {
+    std::vector<PhysicObjects*> collideWith;
+
     for(unsigned i = 0; i < m_physicObjectsCount; ++i)
     {
         if(!m_aphysicObjects[i].isActive() || !m_aphysicObjects[i].isUsed()
@@ -76,6 +78,7 @@ void PhysicEngine::processCollision(PhysicObjects* object)
         object->blockMovingLeft(false);
         object->blockMovingRight(false);
 
+        // Contact detected
         if(vector != sf::Vector2f(0.0f,0.0f))
         {
             if(m_aphysicObjects[i].getPosition().y < object->getPosition().y
@@ -109,6 +112,31 @@ void PhysicEngine::processCollision(PhysicObjects* object)
                 object->killHorizontalKinetic();
                 object->move(vector.x,0.0f);
             }
+
+            if(object->isTrigger())
+            {
+                collideWith.push_back(&m_aphysicObjects[i]);
+                if(object->isInContact(&m_aphysicObjects[i]))
+                    // On trigger stay
+                    object->m_triggerAction->onStay(&m_aphysicObjects[i]);
+                else
+                    // On trigger enter
+                    object->m_triggerAction->onEnter(&m_aphysicObjects[i]);
+            }
+        }
+        else
+        {
+            if(object->isInContact(&m_aphysicObjects[i]))
+                object->m_triggerAction->onExit(&m_aphysicObjects[i]);
+        }
+    }
+
+    if(object->isTrigger())
+    {
+        object->clearContact();
+        for (unsigned i = 0; i < collideWith.size() ; ++i)
+        {
+            object->addContact(collideWith[i]);
         }
     }
 }

@@ -7,8 +7,9 @@
 
 
 #include <SFML/System/Vector2.hpp>
-#include "Trigger/TriggerAction.hpp"
+#include <vector>
 #include "../Tools/Updatable.hpp"
+class TriggerAction;
 
 class PhysicObjects : public Updatable
 {
@@ -22,7 +23,8 @@ public:
     void                initAsRigidBody             (sf::Vector2f position, float maxSpeed, float acceleration);
     void                initAsMovingCollider        (sf::Vector2f position, sf::Vector2f dimension, float maxSpeed, float acceleration);
     void                initAsTrigger               (sf::Vector2f position,sf::Vector2f dimension, TriggerAction* action);
-    void                initAsMovingTrigger         (sf::Vector2f position, sf::Vector2f dimension, float maxSpeed, float acceleration, TriggerAction* action)
+    void                initAsMovingTrigger         (sf::Vector2f position, sf::Vector2f dimension, float maxSpeed,
+                                                     float acceleration, TriggerAction* action);
 
     void                startMoveLeft               ();
     void                startMoveRight              ();
@@ -51,6 +53,9 @@ public:
     bool                isRigidBody                 ();
     bool                isCollider                  ();
     bool                isTrigger                   ();
+    bool                isInContact         (PhysicObjects* object);
+    void                addContact                  (PhysicObjects* object);
+    void                clearContact                ();
 
     void                update                      (double dt);
 
@@ -99,19 +104,20 @@ protected:
     /// Private members
     //------------------------------------------------------------------------------------------------------------------
 private:
-    bool                m_isUsed;
-    bool                m_isReady;
-    bool                m_isCollider;
-    bool                m_isRigidBody;
-    TriggerAction*      m_triggerAction;
-    sf::Vector2f        m_position;
-    sf::Vector2f        m_dimension;
-    sf::Vector2f        m_velocity;
-    float               m_maxSpeed;
-    float               m_acceleration;
-    bool                m_isMovingLeft, m_isMovingRight, m_isMovingUp, m_isMovingDown;
-    bool                m_blockMovingLeft, m_blockMovingRight, m_blockMovingUp, m_blockMovingDown;
-    bool                m_active;
+    bool                        m_isUsed;
+    bool                        m_isReady;
+    bool                        m_isCollider;
+    bool                        m_isRigidBody;
+    TriggerAction*              m_triggerAction;
+    sf::Vector2f                m_position;
+    sf::Vector2f                m_dimension;
+    sf::Vector2f                m_velocity;
+    float                       m_maxSpeed;
+    float                       m_acceleration;
+    bool                        m_isMovingLeft, m_isMovingRight, m_isMovingUp, m_isMovingDown;
+    bool                        m_blockMovingLeft, m_blockMovingRight, m_blockMovingUp, m_blockMovingDown;
+    bool                        m_active;
+    std::vector<PhysicObjects*> m_colliderContact;
 
     const float         coeffFriction = 5.0f;
 };

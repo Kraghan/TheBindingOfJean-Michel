@@ -6,6 +6,8 @@
 #define BINDINGOFJEANMICHEL_TRIGGERACTION_HPP
 
 
+#include "../PhysicObjects.hpp"
+
 class TriggerAction
 {
     //------------------------------------------------------------------------------------------------------------------
@@ -14,6 +16,9 @@ class TriggerAction
 public:
     explicit            TriggerAction              ();
     virtual             ~TriggerAction             ();
+    virtual void        onEnter                    (PhysicObjects* objects) = 0;
+    virtual void        onExit                     (PhysicObjects* objects) = 0;
+    virtual void        onStay                     (PhysicObjects* objects) = 0;
 
     //------------------------------------------------------------------------------------------------------------------
     /// Protected members
@@ -24,9 +29,6 @@ protected:
     /// Private members
     //------------------------------------------------------------------------------------------------------------------
 private:
-    virtual void        onEnter                     () = 0;
-    virtual void        onExit                      () = 0;
-    virtual void        onStay                      () = 0;
 };
 
 

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <math.h>
 #include "../../Header/PhysicEngine/PhysicObjects.hpp"
+#include "../../Header/PhysicEngine/Trigger/TriggerAction.hpp"
 
 /* Explicit */ PhysicObjects::PhysicObjects()
 : m_isUsed(false)
@@ -353,4 +354,25 @@ void PhysicObjects::killVerticalKinetic()
 void PhysicObjects::killHorizontalKinetic()
 {
     m_velocity.x = 0.0f;
+}
+
+bool PhysicObjects::isInContact(PhysicObjects* object)
+{
+    for(unsigned i = 0; i < m_colliderContact.size(); ++i)
+    {
+        if(object == m_colliderContact[i])
+            return true;
+    }
+    return false;
+}
+
+void PhysicObjects::addContact(PhysicObjects* object)
+{
+    if(!isInContact(object))
+        m_colliderContact.push_back(object);
+}
+
+void PhysicObjects::clearContact()
+{
+    m_colliderContact.clear();
 }

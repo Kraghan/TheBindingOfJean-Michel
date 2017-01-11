@@ -9,6 +9,7 @@
 #include "../Tools/Updatable.hpp"
 #include "../Tools/Singleton.hpp"
 #include "PhysicObjects.hpp"
+#include "Trigger/TriggerAction.hpp"
 
 class PhysicEngine : public Updatable, public Singleton < PhysicEngine >
 {

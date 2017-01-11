@@ -9,6 +9,7 @@
 #include "Entity.hpp"
 #include "../GraphicEngine/GraphicEngine.hpp"
 #include "../PhysicEngine/PhysicEngine.hpp"
+#include "../../Header/Entity/Projectile.hpp"
 
 class Projectile : public Entity, public Updatable
 {
