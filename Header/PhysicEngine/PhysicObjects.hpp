@@ -21,8 +21,8 @@ public:
     void                initAsCollider              (sf::Vector2f position, sf::Vector2f dimension);
     void                initAsRigidBody             (sf::Vector2f position, float maxSpeed, float acceleration);
     void                initAsMovingCollider        (sf::Vector2f position, sf::Vector2f dimension, float maxSpeed, float acceleration);
-    void                initAsTrigger               (sf::Vector2f position, sf::Vector2f dimension, TriggerAction*
-    action);
+    void                initAsTrigger               (sf::Vector2f position,sf::Vector2f dimension, TriggerAction* action);
+    void                initAsMovingTrigger         (sf::Vector2f position, sf::Vector2f dimension, float maxSpeed, float acceleration, TriggerAction* action)
 
     void                startMoveLeft               ();
     void                startMoveRight              ();

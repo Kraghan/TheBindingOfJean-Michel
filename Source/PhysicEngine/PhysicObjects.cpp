@@ -92,6 +92,23 @@ void PhysicObjects::initAsTrigger(sf::Vector2f position, sf::Vector2f dimension,
     m_acceleration = 0.0f;
 }
 
+void PhysicObjects::initAsMovingTrigger(sf::Vector2f position,
+                                        sf::Vector2f dimension, float maxSpeed,
+                                        float acceleration,
+                                        TriggerAction *action)
+{
+    m_isReady = true;
+    m_isCollider = false;
+    m_active = false;
+    m_isRigidBody = true;
+    m_triggerAction = action;
+    m_position = position;
+    m_dimension = dimension;
+    m_velocity = sf::Vector2f(0.0f,0.0f);
+    m_maxSpeed = maxSpeed;
+    m_acceleration = acceleration;
+}
+
 void PhysicObjects::startMoveLeft()
 {
     m_isMovingLeft = true;

@@ -208,7 +208,10 @@ void Player::shoot(Position position)
             return;
     }
 
-    projectile->init(2,1,getPhysicObject()->getPosition(),sf::Vector2f(40,40)
+    sf::Vector2f pos = getPhysicObject()->getPosition();
+    pos.x += 20.0f;
+
+    projectile->init(2,1,pos,sf::Vector2f(40,40)
             ,speed);
     m_timeSinceLastShoot = 0.0;
 }
