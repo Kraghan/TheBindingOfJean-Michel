@@ -1,1 +1,1 @@
-E:\\Users\\Kraghan\\Workspace\\Jeux\\SFML-2.4.0
+C:\\Users\\madjo\\OneDrive\\Jeux\\SFML-2.4.0

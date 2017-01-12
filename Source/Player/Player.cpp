@@ -159,6 +159,7 @@ void Player::init()
                                          .y/2 - 40),
                  sf::Vector2f(80,80),500.0f,1000.0f);
     activePhysic();
+    getPhysicObject()->bindEntity(this);
 }
 
 void Player::startAnimation(std::string name)

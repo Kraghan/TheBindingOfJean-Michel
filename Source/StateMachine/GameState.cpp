@@ -8,7 +8,6 @@
 /* explicit */ GameState::GameState()
 : m_level()
 , m_activeRoom(nullptr)
-, m_player()
 {
 
 }
@@ -24,7 +23,7 @@
     m_level = generator.generateLevel(1);
     m_activeRoom = m_level.getFirstRoom();
     m_activeRoom->display();
-    m_player.init();
+    Player::Instance()->init();
     return true;
 }
 
@@ -41,56 +40,56 @@
         {
             // Z
             case sf::Keyboard::Z :
-                if(!m_player.getPhysicObject()->isMovingUp())
+                if(!Player::Instance()->getPhysicObject()->isMovingUp())
                 {
-                    m_player.getPhysicObject()->startMoveUp();
-                    m_player.getPhysicObject()->stopMoveDown();
-                    m_player.startAnimation("WALK_BACK");
+                    Player::Instance()->getPhysicObject()->startMoveUp();
+                    Player::Instance()->getPhysicObject()->stopMoveDown();
+                    Player::Instance()->startAnimation("WALK_BACK");
                 }
 
                 break;
             // D
             case sf::Keyboard::D :
-                if(!m_player.getPhysicObject()->isMovingRight())
+                if(!Player::Instance()->getPhysicObject()->isMovingRight())
                 {
-                    m_player.getPhysicObject()->startMoveRight();
-                    m_player.getPhysicObject()->stopMoveLeft();
-                    m_player.startAnimation("WALK_RIGHT");
+                    Player::Instance()->getPhysicObject()->startMoveRight();
+                    Player::Instance()->getPhysicObject()->stopMoveLeft();
+                    Player::Instance()->startAnimation("WALK_RIGHT");
                 }
                 break;
             // Q
             case sf::Keyboard::Q :
-                if(!m_player.getPhysicObject()->isMovingLeft())
+                if(!Player::Instance()->getPhysicObject()->isMovingLeft())
                 {
-                    m_player.getPhysicObject()->startMoveLeft();
-                    m_player.getPhysicObject()->stopMoveRight();
-                    m_player.startAnimation("WALK_LEFT");
+                    Player::Instance()->getPhysicObject()->startMoveLeft();
+                    Player::Instance()->getPhysicObject()->stopMoveRight();
+                    Player::Instance()->startAnimation("WALK_LEFT");
                 }
                 break;
             // S
             case sf::Keyboard::S :
-                if(!m_player.getPhysicObject()->isMovingDown())
+                if(!Player::Instance()->getPhysicObject()->isMovingDown())
                 {
-                    m_player.getPhysicObject()->startMoveDown();
-                    m_player.getPhysicObject()->stopMoveUp();
-                    m_player.startAnimation("WALK_FRONT");
+                    Player::Instance()->getPhysicObject()->startMoveDown();
+                    Player::Instance()->getPhysicObject()->stopMoveUp();
+                    Player::Instance()->startAnimation("WALK_FRONT");
                 }
                 break;
             case sf::Keyboard::Up :
-                m_player.setHeadOrientation(Position::E_TOP);
-                m_player.shoot(Position::E_TOP);
+                Player::Instance()->setHeadOrientation(Position::E_TOP);
+                Player::Instance()->shoot(Position::E_TOP);
                 break;
             case sf::Keyboard::Down :
-                m_player.setHeadOrientation(Position::E_BOTTOM);
-                m_player.shoot(Position::E_BOTTOM);
+                Player::Instance()->setHeadOrientation(Position::E_BOTTOM);
+                Player::Instance()->shoot(Position::E_BOTTOM);
                 break;
             case sf::Keyboard::Left :
-                m_player.setHeadOrientation(Position::E_LEFT);
-                m_player.shoot(Position::E_LEFT);
+                Player::Instance()->setHeadOrientation(Position::E_LEFT);
+                Player::Instance()->shoot(Position::E_LEFT);
                 break;
             case sf::Keyboard::Right :
-                m_player.setHeadOrientation(Position::E_RIGHT);
-                m_player.shoot(Position::E_RIGHT);
+                Player::Instance()->setHeadOrientation(Position::E_RIGHT);
+                Player::Instance()->shoot(Position::E_RIGHT);
                 break;
             default:
                 break;
@@ -103,35 +102,35 @@
         {
             // Z
             case sf::Keyboard::Z :
-                m_player.getPhysicObject()->stopMoveUp();
-                if(!m_player.getPhysicObject()->isMovingDown() &&
-                        !m_player.getPhysicObject()->isMovingLeft() &&
-                        !m_player.getPhysicObject()->isMovingRight())
-                    m_player.startAnimation("IDLE_BACK");
+                Player::Instance()->getPhysicObject()->stopMoveUp();
+                if(!Player::Instance()->getPhysicObject()->isMovingDown() &&
+                        !Player::Instance()->getPhysicObject()->isMovingLeft() &&
+                        !Player::Instance()->getPhysicObject()->isMovingRight())
+                    Player::Instance()->startAnimation("IDLE_BACK");
                 break;
             // D
             case sf::Keyboard::D :
-                m_player.getPhysicObject()->stopMoveRight();
-                if(!m_player.getPhysicObject()->isMovingDown() &&
-                   !m_player.getPhysicObject()->isMovingLeft() &&
-                   !m_player.getPhysicObject()->isMovingUp())
-                    m_player.startAnimation("IDLE_RIGHT");
+                Player::Instance()->getPhysicObject()->stopMoveRight();
+                if(!Player::Instance()->getPhysicObject()->isMovingDown() &&
+                   !Player::Instance()->getPhysicObject()->isMovingLeft() &&
+                   !Player::Instance()->getPhysicObject()->isMovingUp())
+                    Player::Instance()->startAnimation("IDLE_RIGHT");
                 break;
             // Q
             case sf::Keyboard::Q :
-                m_player.getPhysicObject()->stopMoveLeft();
-                if(!m_player.getPhysicObject()->isMovingDown() &&
-                   !m_player.getPhysicObject()->isMovingUp() &&
-                   !m_player.getPhysicObject()->isMovingRight())
-                    m_player.startAnimation("IDLE_LEFT");
+                Player::Instance()->getPhysicObject()->stopMoveLeft();
+                if(!Player::Instance()->getPhysicObject()->isMovingDown() &&
+                   !Player::Instance()->getPhysicObject()->isMovingUp() &&
+                   !Player::Instance()->getPhysicObject()->isMovingRight())
+                    Player::Instance()->startAnimation("IDLE_LEFT");
                 break;
             // S
             case sf::Keyboard::S :
-                m_player.getPhysicObject()->stopMoveDown();
-                if(!m_player.getPhysicObject()->isMovingUp() &&
-                   !m_player.getPhysicObject()->isMovingLeft() &&
-                   !m_player.getPhysicObject()->isMovingRight())
-                    m_player.startAnimation("IDLE_FRONT");
+                Player::Instance()->getPhysicObject()->stopMoveDown();
+                if(!Player::Instance()->getPhysicObject()->isMovingUp() &&
+                   !Player::Instance()->getPhysicObject()->isMovingLeft() &&
+                   !Player::Instance()->getPhysicObject()->isMovingRight())
+                    Player::Instance()->startAnimation("IDLE_FRONT");
                 break;
             default:
                 break;
@@ -146,5 +145,5 @@ void GameState::init()
 
 /* virtual */ void GameState::update(double dt)
 {
-    m_player.update(dt);
+    Player::Instance()->update(dt);
 }

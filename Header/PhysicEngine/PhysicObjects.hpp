@@ -9,7 +9,9 @@
 #include <SFML/System/Vector2.hpp>
 #include <vector>
 #include "../Tools/Updatable.hpp"
+
 class TriggerAction;
+class Entity;
 
 class PhysicObjects : public Updatable
 {
@@ -53,9 +55,11 @@ public:
     bool                isRigidBody                 ();
     bool                isCollider                  ();
     bool                isTrigger                   ();
-    bool                isInContact         (PhysicObjects* object);
+    bool                isInContact                 (PhysicObjects* object);
     void                addContact                  (PhysicObjects* object);
     void                clearContact                ();
+    void                bindEntity                  (Entity* entity);
+    Entity*             getBindedEntity             ();
 
     void                update                      (double dt);
 
@@ -118,8 +122,9 @@ private:
     bool                        m_blockMovingLeft, m_blockMovingRight, m_blockMovingUp, m_blockMovingDown;
     bool                        m_active;
     std::vector<PhysicObjects*> m_colliderContact;
+    Entity*                     m_pentity;
 
-    const float         coeffFriction = 5.0f;
+    const float                 coeffFriction = 5.0f;
 };
 
 

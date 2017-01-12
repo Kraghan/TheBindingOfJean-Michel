@@ -5,6 +5,7 @@
 #include <iostream>
 #include <math.h>
 #include "../../Header/PhysicEngine/PhysicObjects.hpp"
+#include "../../Header/Entity/Entity.hpp"
 #include "../../Header/PhysicEngine/Trigger/TriggerAction.hpp"
 
 /* Explicit */ PhysicObjects::PhysicObjects()
@@ -27,6 +28,7 @@
 , m_blockMovingUp(false)
 , m_blockMovingDown(false)
 , m_active(false)
+, m_pentity(nullptr)
 {
     // None
 }
@@ -48,6 +50,7 @@ void PhysicObjects::initAsCollider(sf::Vector2f position, sf::Vector2f dimension
     m_velocity = sf::Vector2f(0.0f,0.0f);
     m_maxSpeed = 0.0f;
     m_acceleration = 0.0f;
+    m_pentity = nullptr;
 }
 
 void PhysicObjects::initAsRigidBody(sf::Vector2f position, float maxSpeed, float acceleration)
@@ -62,6 +65,7 @@ void PhysicObjects::initAsRigidBody(sf::Vector2f position, float maxSpeed, float
     m_velocity = sf::Vector2f(0.0f,0.0f);
     m_maxSpeed = maxSpeed;
     m_acceleration = acceleration;
+    m_pentity = nullptr;
 }
 
 void PhysicObjects::initAsMovingCollider(sf::Vector2f position, sf::Vector2f dimension,
@@ -77,6 +81,7 @@ void PhysicObjects::initAsMovingCollider(sf::Vector2f position, sf::Vector2f dim
     m_velocity = sf::Vector2f(0.0f,0.0f);
     m_maxSpeed = maxSpeed;
     m_acceleration = acceleration;
+    m_pentity = nullptr;
 }
 
 void PhysicObjects::initAsTrigger(sf::Vector2f position, sf::Vector2f dimension, TriggerAction* action)
@@ -91,6 +96,7 @@ void PhysicObjects::initAsTrigger(sf::Vector2f position, sf::Vector2f dimension,
     m_velocity = sf::Vector2f(0.0f,0.0f);
     m_maxSpeed = 0.0f;
     m_acceleration = 0.0f;
+    m_pentity = nullptr;
 }
 
 void PhysicObjects::initAsMovingTrigger(sf::Vector2f position,
@@ -108,6 +114,7 @@ void PhysicObjects::initAsMovingTrigger(sf::Vector2f position,
     m_velocity = sf::Vector2f(0.0f,0.0f);
     m_maxSpeed = maxSpeed;
     m_acceleration = acceleration;
+    m_pentity = nullptr;
 }
 
 void PhysicObjects::startMoveLeft()
@@ -375,4 +382,14 @@ void PhysicObjects::addContact(PhysicObjects* object)
 void PhysicObjects::clearContact()
 {
     m_colliderContact.clear();
+}
+
+void PhysicObjects::bindEntity(Entity* entity)
+{
+    m_pentity = entity;
+}
+
+Entity* PhysicObjects::getBindedEntity()
+{
+    return m_pentity;
 }

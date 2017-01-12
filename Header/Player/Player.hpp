@@ -13,7 +13,7 @@
 #include "../../Header/Tools/Position.hpp"
 #include "../Entity/Projectile.hpp"
 
-class Player : public AnimatedEntity, public Updatable
+class Player : public AnimatedEntity, public Updatable, public Singleton < Player >
 {
     //------------------------------------------------------------------------------------------------------------------
     /// Public members

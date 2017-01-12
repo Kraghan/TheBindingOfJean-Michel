@@ -38,7 +38,6 @@ protected:
 private:
     Level               m_level;
     Room*               m_activeRoom;
-    Player              m_player;
 };
 
 #endif //BINDINGOFJEANMICHEL_GAMESTATE_HPP

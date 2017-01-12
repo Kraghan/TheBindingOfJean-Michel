@@ -44,3 +44,8 @@ void Entity::deactivePhysic()
 {
     m_physicObject->setInactive();
 }
+
+void Entity::hit(unsigned damage)
+{
+    m_hitPoint -= damage;
+}

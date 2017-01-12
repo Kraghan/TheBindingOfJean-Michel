@@ -18,6 +18,10 @@
 
 /* virtual */ void ProjectileTrigger::onEnter(PhysicObjects* objects)
 {
+    if(objects->getBindedEntity() == Player::Instance())
+        return;
+    if(objects->getBindedEntity() != nullptr)
+        objects->getBindedEntity()->hit(m_pprojectile->getDamage());
     m_pprojectile->kill();
 }
 

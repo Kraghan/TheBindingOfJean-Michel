@@ -84,3 +84,8 @@ void Projectile::kill()
     m_elapsed = m_timeToLive;
     std::cout<< m_elapsed << " "  << m_timeToLive <<std::endl;
 }
+
+unsigned Projectile::getDamage()
+{
+    return m_damage;
+}

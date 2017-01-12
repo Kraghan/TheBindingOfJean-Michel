@@ -29,6 +29,7 @@ public:
     bool                isFree                  ();
     void                setTexture              (sf::Texture* texture);
     void                kill                    ();
+    unsigned            getDamage               ();
 
     //------------------------------------------------------------------------------------------------------------------
     /// Protected members

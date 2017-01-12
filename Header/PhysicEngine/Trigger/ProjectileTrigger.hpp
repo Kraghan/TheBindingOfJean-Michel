@@ -8,6 +8,7 @@
 
 #include "TriggerAction.hpp"
 #include "../../Entity/Projectile.hpp"
+#include "../../Player/Player.hpp"
 
 class ProjectileTrigger : public TriggerAction
 {

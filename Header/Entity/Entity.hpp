@@ -23,6 +23,7 @@ public:
     void                init                (int life, sf::Vector2f position, sf::Vector2f dimension, float maxSpeed, float acceleration);
     void                activePhysic        ();
     void                deactivePhysic      ();
+    void                hit                 (unsigned damage);
 
     //------------------------------------------------------------------------------------------------------------------
     /// Protected members
