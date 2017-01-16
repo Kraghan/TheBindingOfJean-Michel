@@ -80,9 +80,7 @@ void Projectile::setTexture(sf::Texture* texture)
 
 void Projectile::kill()
 {
-    std::cout<< m_elapsed << " "  << m_timeToLive <<std::endl;
     m_elapsed = m_timeToLive;
-    std::cout<< m_elapsed << " "  << m_timeToLive <<std::endl;
 }
 
 unsigned Projectile::getDamage()

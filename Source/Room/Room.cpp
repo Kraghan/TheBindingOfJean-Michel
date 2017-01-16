@@ -86,9 +86,9 @@ void Room::load()
     sf::Vector2f spriteSize = sf::Vector2f(GraphicEngine::Instance()->getResolution().x / Room::standardWidth,
                                            GraphicEngine::Instance()->getResolution().y / Room::standardHeight);
 
-    for(unsigned x = 0; x < m_dimension.x; ++x)
+    for(unsigned x = 0; x < m_dimension.x * Room::standardWidth; ++x)
     {
-        for(unsigned y = 0; y < m_dimension.y; ++y)
+        for(unsigned y = 0; y < m_dimension.y * Room::standardHeight; ++y)
         {
             Sprite* s = GraphicEngine::Instance()->getSprite();
             sf::Texture* texture = nullptr;
@@ -99,7 +99,7 @@ void Room::load()
                     // Angle TL
                     texture = GraphicEngine::Instance()->getTextures("ANGLE_TL");
                 }
-                else if (y == Room::standardHeight-1)
+                else if (y == m_dimension.y * Room::standardHeight-1)
                 {
                     // Angle TR
                     texture = GraphicEngine::Instance()->getTextures("ANGLE_BL");
@@ -110,7 +110,7 @@ void Room::load()
                     texture = GraphicEngine::Instance()->getTextures("WALL_LEFT");
                 }
             }
-            else if(x == Room::standardWidth-1)
+            else if(x == m_dimension.x *Room::standardWidth-1)
             {
                 if(y == 0)
                 {
@@ -135,7 +135,7 @@ void Room::load()
                     // Wall Left
                     texture = GraphicEngine::Instance()->getTextures("WALL_TOP");
                 }
-                else if (y == Room::standardHeight-1)
+                else if (y == m_dimension.y * Room::standardHeight-1)
                 {
                     // Wall Right
                     texture = GraphicEngine::Instance()->getTextures("WALL_BOTTOM");
@@ -163,28 +163,30 @@ void Room::load()
     // Add wall
     PhysicObjects* wallTop = PhysicEngine::Instance()->getPhysicObject();
 
-    wallTop->initAsCollider(sf::Vector2f(0.0f,0.0f),
-                            GraphicEngine::Instance()->getSpriteSize
-                                    (sf::Vector2f(1600.0f,60.0f)));
+    wallTop->initAsCollider(
+            sf::Vector2f(0.0f,0.0f),
+            sf::Vector2f(spriteSize.x * m_dimension.x * Room::standardWidth,
+                         spriteSize.y));
     addPhysicObjects(wallTop);
     PhysicObjects* wallBottom = PhysicEngine::Instance()->getPhysicObject();
-    wallBottom->initAsCollider(GraphicEngine::Instance()->getSpriteSize
-                                       (sf::Vector2f(0.0f,800.0f)),
-                               GraphicEngine::Instance()->getSpriteSize
-                                       (sf::Vector2f(1600.0f,160.0f)));
+    wallBottom->initAsCollider(
+            sf::Vector2f(0.0f,spriteSize.y * (m_dimension.y * Room::standardHeight -1)),
+            sf::Vector2f(spriteSize.x * m_dimension.x * Room::standardWidth,
+                                            spriteSize.y));
 
     addPhysicObjects(wallBottom);
 
     PhysicObjects* wallLeft = PhysicEngine::Instance()->getPhysicObject();
-    wallLeft->initAsCollider(sf::Vector2f(0.0f,0.0f),
-                             GraphicEngine::Instance()->getSpriteSize
-                                     (sf::Vector2f(160.0f,960.0f)));
+    wallLeft->initAsCollider(
+            sf::Vector2f(0.0f,0.0f),
+            sf::Vector2f(spriteSize.x,
+                         spriteSize.y * (m_dimension.y * Room::standardHeight))
+    );
     PhysicObjects* wallRight = PhysicEngine::Instance()->getPhysicObject();
     addPhysicObjects(wallLeft);
-    wallRight->initAsCollider(GraphicEngine::Instance()->getSpriteSize
-                                      (sf::Vector2f(1600.0f-160.0f,0.0f)),
-                              GraphicEngine::Instance()->getSpriteSize
-                                      (sf::Vector2f(160.0f,960.0f)));
+    wallRight->initAsCollider(sf::Vector2f(spriteSize.x * (m_dimension.x * Room::standardWidth - 1),0.0f),
+                              sf::Vector2f(spriteSize.x,
+                                           spriteSize.y * (m_dimension.y * Room::standardHeight)));
     addPhysicObjects(wallRight);
 
 }

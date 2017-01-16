@@ -2,6 +2,7 @@
 // Created by Kraghan on 21/12/2016.
 //
 
+#include <iostream>
 #include "../../Header/Room/RoomStorage.hpp"
 
 /* Explicit */ RoomStorage::RoomStorage()

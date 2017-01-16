@@ -2,6 +2,7 @@
 // Created by Kraghan on 21/12/2016.
 //
 
+#include <iostream>
 #include "../../Header/Level/Level.hpp"
 
 /* Explicit */ Level::Level()
